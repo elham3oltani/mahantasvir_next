@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import medal from "../../public/medal.png";
-import discount from "../../public/discount.png"
-import freeDelivery from "../../public/free-delivery.png"
-import service from "../../public/service.png"
+import medal from "../../public/images/medal.png";
+import discount from "../../public/images/discount.png"
+import freeDelivery from "../../public/images/free-delivery.png"
+import service from "../../public/images/service.png"
 
 
 const AttributesProduct = () => {
   return (
-    <div className="flex flex-wrap flex-row-reverse rounded-lg justify-around items-center py-2 lg:w-4/5 w-full bg-white mx-auto shadow-xl mt-6">
+    <div className="flex flex-wrap flex-row-reverse rounded-lg justify-around items-center py-2 lg:w-4/5 w-full bg-white mx-auto shadow-xl my-12">
       <div className="flex flex-col items-center justify-center">
         <Image src={medal}  className="lg:w-16 w-10" />
         <p className="text-[12px]">ضمانت اصالت کالا</p>
