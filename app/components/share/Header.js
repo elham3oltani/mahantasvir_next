@@ -64,7 +64,7 @@ const Header = () => {
             /> */}
            </div>
           </div>
-          <Link href="" className="lg:block hidden">
+          <Link href="/" className="lg:block hidden">
             <Image
               src={logo}
               alt="logo"

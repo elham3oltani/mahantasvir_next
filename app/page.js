@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import AttributesProduct from "./components/AttributesProduct";
 import Banner from "./components/Banner";
 import Discount from "./components/Discount";

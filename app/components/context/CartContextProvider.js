@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useReducer, createContext } from "react";
 
 const initialState = {
