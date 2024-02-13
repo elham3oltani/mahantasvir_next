@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import react from "react";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContextProvider";
@@ -36,9 +36,7 @@ const Cart = async () => {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
-  const data = await getData();
-  const productNew = data["proposal"];
-  console.log(productNew);
+
   return (
     <div className="bg-[#f7f7f7] mt-8 h-full">
       <div className="p-2 w-[85%] mx-auto rounded-xl pt-4 bg-[#f7f7f7]">
@@ -51,9 +49,8 @@ const Cart = async () => {
             مشاهده همه
           </button>
         </div>
-        {productNew.map((product)=>(
+
         <Carousel
-        key={product.id}
           removeArrowOnDeviceType={["tablet", "mobile"]}
           responsive={responsive}
           // autoPlay={true}
@@ -62,86 +59,251 @@ const Cart = async () => {
           customTransition="all .5"
           transitionDuration={500}
         >
-        
-           <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-           <div className="relative">
-             <img
-               src={product.files}
-               className="object-cover mt-4 w-fit mx-auto"
-               alt={product.name}
-             />
-             {/* <div className=" absolute left-3 top-0  ">
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={camera1}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
              <IoBookmark size={45} className="text-basic" />
              <span className=" absolute left-[10px] top-2 text-white text-sm">
                30%
              </span>
            </div> */}
-           </div>
-           <div className="flex justify-center text-[#929090] flex-col items-center mt-2 border-t">
-             <div className="mt-3 flex flex-col">
-               <p className="text-center font-bold ">90000</p>
-               <p className="mt-1">cctv warm light s22</p>
-             </div>
-           </div>
-           <div className=" text-[#aaa] py-4">
-             <div className="flex justify-between items-center mx-4">
-               <p className="text-black font-bold">
-                 160.000
-                 <span className="text-[12px]">تومان</span>
-               </p>
-               {IsInCartProduct(state) ? (
-                 <button
-                   className="text-white justify-center flex items-center transition-all duration-200 delay-150 ease-in-out rounded-md bg-orange-500 w-7 h-7 xl:h-8 xl:w-12 lg:h-8 lg:w-12"
-                   onClick={() =>
-                     dispatch({
-                       type: "REMOVE-ITEM-PRODUCT",
-                       payload: item,
-                     })
-                   }
-                 >
-                   <BsCartCheck size={22} className="" />
-                 </button>
-               ) : (
-                 <>
-                   <button
-                     className="text-white bg-blue-200 transition-all duration-200 delay-150 ease-in-out  px-2.5 rounded-md py-1 align-middle hidden lg:flex xl:flex 2xl:flex"
-                     onClick={() =>
-                       dispatch({
-                         type: "ADD_ITEMS-PRODUCT",
-                         payload: item,
-                       })
-                     }
-                   >
-                     {" "}
-                     <BsCart3 />
-                   </button>
-                   <button
-                     className="text-white bg-blue-200 items-center transition-all duration-200 delay-150 ease-in-out w-7 h-7 justify-center rounded-md py-1 align-middle flex 2xl:hidden lg:hidden xl:hidden"
-                     onClick={() =>
-                       dispatch({
-                         type: "ADD_ITEMS-PRODUCT",
-                         payload: item,
-                       })
-                     }
-                   >
-                     {" "}
-                     <HiPlus className="" size={20} />
-                   </button>
-                 </>
-               )}
-               : []
-             </div>
-           </div>
-         </div>
-        
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
+
+
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={camera3}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
+             <IoBookmark size={45} className="text-basic" />
+             <span className=" absolute left-[10px] top-2 text-white text-sm">
+               30%
+             </span>
+           </div> */}
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
+
+
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={alarm}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
+             <IoBookmark size={45} className="text-basic" />
+             <span className=" absolute left-[10px] top-2 text-white text-sm">
+               30%
+             </span>
+           </div> */}
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={camera1}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
+             <IoBookmark size={45} className="text-basic" />
+             <span className=" absolute left-[10px] top-2 text-white text-sm">
+               30%
+             </span>
+           </div> */}
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
+
+
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={camera1}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
+             <IoBookmark size={45} className="text-basic" />
+             <span className=" absolute left-[10px] top-2 text-white text-sm">
+               30%
+             </span>
+           </div> */}
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
+
+
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={camera1}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
+             <IoBookmark size={45} className="text-basic" />
+             <span className=" absolute left-[10px] top-2 text-white text-sm">
+               30%
+             </span>
+           </div> */}
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
+            <div className="relative">
+              <Image
+                src={camera1}
+                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
+                alt="camera"
+              />
+              {/* <div className=" absolute left-3 top-0  ">
+             <IoBookmark size={45} className="text-basic" />
+             <span className=" absolute left-[10px] top-2 text-white text-sm">
+               30%
+             </span>
+           </div> */}
+            </div>
+            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
+              <div className="mt-3 flex flex-col">
+                <p className="text-center text-basic font-bold ">90000 تومان</p>
+                <p className="mt-1 text-black">cctv warm light s22</p>
+              </div>
+            </div>
+            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
+              <span className="hover:text-basic rounded-full">
+                <GoHeart size={25} className="" />
+              </span>
+              <span className="">
+                <IoEyeOutline size={25} />{" "}
+              </span>
+              <span>
+                {" "}
+                <BsCart3 size={25} className="" />
+              </span>
+            </div>
+          </div>
         </Carousel>
-          ))}
       </div>
     </div>
   );
 };
-export async function getData() {
-  const res = await fetch("https://backend.mahantasvir.ir")
-  return res.json();
-}
+
 export default Cart;

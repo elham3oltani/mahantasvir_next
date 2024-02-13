@@ -42,9 +42,9 @@ const page = () => {
     <>
       <section className="bg-white lg:w-1/2 xl:w-1/3 md:w-1/2 px-4 py-8 mx-4 md:mx-auto xl:mx-auto lg:mx-auto my-10 rounded-lg shadow-[2px_2px_30px_3px_rgba(0,0,0,0.1)] ">
         <div className="after:flex">
-          <h1 className="before:flex before:items-center before:w-[200px] before:border-b before:border-basic">
-            dtfgyhj
-          </h1>
+          {/* <h1 className="before:flex before:items-center before:w-[200px] before:border-b before:border-basic">
+        
+          </h1> */}
         </div>
         <div className="mx-auto">
           <div className="mt-8 px-1">

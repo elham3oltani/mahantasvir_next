@@ -13,22 +13,13 @@ import Product from "./Product";
 import FilterProduct from "./FilterProduct";
 
 const products = async () => {
-  const data = await getData()
-  console.log(data)
-  const products=data["proposal"]
-  console.log(products)
+
   return (
     <>
     
      <div className="mx-28 my-10 overflow-hidden">
       {/* top order */}
-      {products.map((product)=>(
-        <div key={product.id} className="bg-basic">
-          <p>piii</p>
-          <img src={product?.files} alt={product.name} width={400} height={400}/>
-          <p>{product.name}</p>
-        </div>
-      ))}
+     
     
       <div className="flex">
         {/* single product */}
@@ -43,13 +34,5 @@ const products = async () => {
    
   );
 };
-export async function getData() {
-  const res = await fetch("https://backend.mahantasvir.ir");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  
-
-  return res.json();
-}
 export default products;

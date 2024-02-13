@@ -41,7 +41,7 @@ const Header = () => {
 
   return (
     <header className="text-bold">
-      <div className="lg:flex flex-row-reverse justify-between items-center lg:border-b px-8">
+      <div className="lg:flex flex-row-reverse justify-between py-2 items-center lg:border-b px-8">
         <div className="flex items-center justify-center">
           <div className="lg:relative fixed z-50 px-2 w-full">
             <input
@@ -74,11 +74,11 @@ const Header = () => {
         </div>
 
         <div className="lg:flex hidden ml-8 ">
-          <Link href="#" className="bg-opacity-20 mr-3 text-center p-2 border border-basic rounded-full w-12 h-12">
+          <Link href="signup" className="bg-opacity-20 mr-3 text-center p-2 border border-basic rounded-full w-12 h-12">
             {" "}
             <AiOutlineUser size={30} className="text-[#6c6c6c]" />
           </Link>
-          <Link href="#" className="relative hidden lg:block border border-basic text-center w-12 h-12 bg-opacity-20 p-2 rounded-full">
+          <Link href="shopping" className="relative hidden lg:block border border-basic text-center w-12 h-12 bg-opacity-20 p-2 rounded-full">
             <AiOutlineShoppingCart size={30} className="text-[#6c6c6c]" />
             <span className="rounded-full h-[15px] w-[15px] text-[12px] -top-1.5 left-1 absolute bg-basic text-white text-center ">
             {state.itemsCounter}
@@ -116,7 +116,7 @@ const Header = () => {
           {isOpen ? (
             <div className="flex flex-col justify-start w-[150px] absolute z-10 mr-3 text-sm bg-white mt-4 shadow-xl rounded-md px-0.5 py-1">
               <Link
-                href=""
+                href="products"
                 className="flex w-full justify-center items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full my-1 hover:shadow-md mx-auto"
               >
                 دوربین مداربسته
