@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import camera1 from "../../../public/images/cctv02.png";
 import { GoHeart } from "react-icons/go";
@@ -15,7 +15,7 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 
 import { Grid, Pagination, Navigation, Autoplay } from "swiper/modules";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function App({ data }) {
   // const Autoplay ={
@@ -24,21 +24,19 @@ export default function App({ data }) {
 
   return (
     <>
-      
-       <div className='grid grid-rows-2 w-full'>
-       <Swiper
-        slidesPerView={3}
-        grid={{
-          rows:2,
-        }}
-        spaceBetween={5}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Grid, Pagination]}
-        className="w-[60%] h-auto grid"
-       
-      >
+      <div className="grid grid-rows-2 w-full">
+        <Swiper
+          slidesPerView={3}
+          grid={{
+            rows: 2,
+          }}
+          spaceBetween={5}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Grid, Pagination]}
+          className="w-[60%] h-auto grid"
+        >
           {data ? (
             data.map((product) => (
               <SwiperSlide key={product.id} className="max-w-[300px] h-auto">
@@ -73,12 +71,12 @@ export default function App({ data }) {
                     <span className="hover:text-basic rounded-full">
                       <GoHeart size={25} className="" />
                     </span>
-                    <Link href={`products/single/${product.id}`}>
-                    <span className="">
-                      <IoEyeOutline size={25} />{" "}
-                    </span>
+                    <Link href={`products/${product.id}`} passHref>
+                      <span className="">
+                        <IoEyeOutline size={25} />{" "}
+                      </span>
                     </Link>
-                  
+
                     <span>
                       {" "}
                       <BsCart3 size={25} className="" />
@@ -90,15 +88,8 @@ export default function App({ data }) {
           ) : (
             <ImSpinner6 size={30} className="animate-spin mx-auto" />
           )}
-
         </Swiper>
-        
-       </div>
-           
-
-            
-    
-     
+      </div>
     </>
   );
 }
