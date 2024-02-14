@@ -9,7 +9,8 @@ import Image from "next/image";
 import banner1 from "../../public/images/banner_dahua.jpeg";
 import banner2 from "../../public/images/-bbb.jpeg";
 import banner3 from "../../public/images/banner_tvt.jpeg";
-function Banner() {
+//import { data } from "autoprefixer";
+function Banner({data}) {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -61,13 +62,19 @@ function Banner() {
         keyBoardControl={true}
         className="w-full md:h-[300px] xl:h-[400px] 2xl:h-[400px] lg:h-[350px] -z-20 relative object-cover"
       >
-        <div className="w-full">
-          <Image
-            src={banner1}
-            className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px] object-fill "
-          />
-        </div>
-        <div>
+       {
+        data ? 
+        data.map((banner)=>(
+          <img
+          key={banner.id}
+          src={banner.files}
+          alt="banner mahan tasvir"
+          className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px] object-fill "
+        />
+        ))
+        : []
+       }
+        {/* <div>
           <Image
             src={banner2}
             className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px] object-fill "
@@ -85,7 +92,7 @@ function Banner() {
             src={banner4}
             className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px]  object-fill"
           />
-        </div>
+        </div> */}
       </Carousel>
     </>
   );

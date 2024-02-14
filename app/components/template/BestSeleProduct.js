@@ -1,12 +1,11 @@
 
-
 import BestSelling from "../modules/BestSelling";
 
  const BestSeleProduct = async () => {
   const data = await getData();
-  const productNew = data["proposal"];
-  console.log(productNew);
-  //return <BestSelling data={productNew} />;
+  const productNew = data["productNew"];
+
+  return <BestSelling data={productNew} />;
 };
 
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { LuSearch } from "react-icons/lu";
 import { useMediaQuery } from "react-responsive";
 import {
@@ -16,9 +16,8 @@ import cctvIcon from "../../../public/images/cctv-icon.png";
 import Image from "next/image";
 import Link from "next/link";
 import alarmIcons from "../../../public/images/alarm-icons.png";
-import { CartContext } from "../../components/context/CartContextProvider";
 const Header = () => {
-  let { state } = useContext(CartContext);
+  // let { state } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const [header, setHeader] = useState(false);
   const desktopMode = useMediaQuery({
@@ -49,20 +48,20 @@ const Header = () => {
               placeholder="محصول مورد نظر خودت را پیدا کن"
               className="text-sm placeholder:text-[12px] w-full text-right lg:pr-12 pr-12 rounded-full bg-[#e6e6e6] h-[35px] outline-none"
             />
-            
-           <div className="">
-          <Link href="" className="right-[9px] absolute p-2 bg-red-500 mt-2 rounded-full bottom-[-1px]">
-          <LuSearch
-              size={24}
-              className="text-white "
-            />
-          </Link>
-               {/* <Image
+
+            <div className="">
+              <Link
+                href=""
+                className="right-[9px] absolute p-2 bg-red-500 mt-2 rounded-full bottom-[-1px]"
+              >
+                <LuSearch size={24} className="text-white " />
+              </Link>
+              {/* <Image
               src={logo}
               alt="logo"
               className="h-[50px] w-[150px] object-cover absolute overflow-hidden"
             /> */}
-           </div>
+            </div>
           </div>
           <Link href="/" className="lg:block hidden">
             <Image
@@ -74,15 +73,20 @@ const Header = () => {
         </div>
 
         <div className="lg:flex hidden ml-8 ">
-          <Link href="signup" className="bg-opacity-20 mr-3 text-center p-2 border border-basic rounded-full w-12 h-12">
+          <Link
+            href="signup"
+            className="bg-opacity-20 mr-3 text-center p-2 border border-basic rounded-full w-12 h-12"
+          >
             {" "}
             <AiOutlineUser size={30} className="text-[#6c6c6c]" />
           </Link>
-          <Link href="shopping" className="relative hidden lg:block border border-basic text-center w-12 h-12 bg-opacity-20 p-2 rounded-full">
+          <Link
+            href="shopping"
+            className="relative hidden lg:block border border-basic text-center w-12 h-12 bg-opacity-20 p-2 rounded-full"
+          >
             <AiOutlineShoppingCart size={30} className="text-[#6c6c6c]" />
             <span className="rounded-full h-[15px] w-[15px] text-[12px] -top-1.5 left-1 absolute bg-basic text-white text-center ">
-            {state.itemsCounter}
-
+              {/* {state.itemsCounter} */}0
             </span>
           </Link>
           {/* <div onClick={() => setNav(!nav)} className="xl:hidden">
@@ -133,12 +137,28 @@ const Header = () => {
               >
                 گیت فروشگاهی
               </Link>
+              <Link
+                href=""
+                className="flex w-full justify-center  items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full hover:shadow-md my-1 "
+              >
+           پکیج دوربین مداربسته
+              </Link>
+              <Link
+                href=""
+                className="flex w-full justify-center  items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full hover:shadow-md my-1 "
+              >
+           پکیج  دزدگیراماکن
+              </Link>
             </div>
           ) : (
             ""
           )}
         </div>
-        <Link href="" className="mx-4 hover:text-basic-hover transition-all ease-in duration-150">
+
+        <Link
+          href=""
+          className="mx-4 hover:text-basic-hover transition-all ease-in duration-150"
+        >
           لوازم جانبی
         </Link>
 
@@ -154,7 +174,6 @@ const Header = () => {
         >
           تماس با ما
         </Link>
-     
       </nav>
 
       {/* nav in mobile */}
