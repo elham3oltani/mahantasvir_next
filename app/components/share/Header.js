@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { LuSearch } from "react-icons/lu";
 import { useMediaQuery } from "react-responsive";
 import {
@@ -7,22 +7,53 @@ import {
   AiOutlineUser,
   AiOutlineHome,
 } from "react-icons/ai";
-import { BiCategoryAlt } from "react-icons/bi";
-import { HiOutlineMenu } from "react-icons/hi";
+import { HiMenu } from "react-icons/hi";
+import { FaUser } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
-import logo from "../../../public/images/logo.png";
-import cctvIcon from "../../../public/images/cctv-icon.png";
+import { IoIosArrowDown } from "react-icons/io";
 import Image from "next/image";
+import log from "../../../public/images/logoRed.svg";
 import Link from "next/link";
-import alarmIcons from "../../../public/images/alarm-icons.png";
+import { usePathname } from 'next/navigation'
+import { CartContext } from "../context/CartContextProvider";
 const Header = () => {
-  // let { state } = useContext(CartContext);
+  const { state } = useContext(CartContext);
+
+  const [nav, setNav] = useState(false);
+  const dropdownRef = useRef();
+  const pathname = usePathname()
+  const handleNavbar = () => {
+    setNav(!nav);
+  };
+  useEffect(() => {
+    setNav(false);
+  }, [pathname]);
+
   const [isOpen, setIsOpen] = useState(false);
   const [header, setHeader] = useState(false);
   const desktopMode = useMediaQuery({
     query: "(min-width:1300px)",
   });
+
+  useEffect(() => {
+    const handleCLickOutside = () => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleCLickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleCLickOutside);
+    };
+  }, []);
+
+  const dropdown = [
+    { href: "/camera", name: " دوربین مداربسته" },
+    { href: "/dozdgir", name: " دزدگیر اماکن" },
+    { href: "/gate", name: "گیت فروشگاهی" },
+    
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,9 +71,9 @@ const Header = () => {
 
   return (
     <header className="text-bold">
-      <div className="lg:flex flex-row-reverse justify-between py-2 items-center lg:border-b px-8">
+      <div className="lg:flex flex-row-reverse justify-between lg:py-1.5 items-center lg:border-b px-8">
         <div className="flex items-center justify-center">
-          <div className="lg:relative fixed z-50 px-2 w-full">
+          <div className="lg:relative lg:flex z-50 px-2 w-full hidden">
             <input
               type="text"
               placeholder="محصول مورد نظر خودت را پیدا کن"
@@ -56,18 +87,14 @@ const Header = () => {
               >
                 <LuSearch size={24} className="text-white " />
               </Link>
-              {/* <Image
-              src={logo}
-              alt="logo"
-              className="h-[50px] w-[150px] object-cover absolute overflow-hidden"
-            /> */}
+
             </div>
           </div>
-          <Link href="/" className="lg:block hidden">
+          <Link href="/" className="hidden lg:flex">
             <Image
-              src={logo}
+              src={log}
               alt="logo"
-              className="h-[60px] w-[300px] object-cover overflow-hidden"
+              className="h-[60px] w-[200px] object-cover overflow-hidden"
             />
           </Link>
         </div>
@@ -86,7 +113,7 @@ const Header = () => {
           >
             <AiOutlineShoppingCart size={30} className="text-[#6c6c6c]" />
             <span className="rounded-full h-[15px] w-[15px] text-[12px] -top-1.5 left-1 absolute bg-basic text-white text-center ">
-              {/* {state.itemsCounter} */}0
+              {state.itemsCounter}
             </span>
           </Link>
           {/* <div onClick={() => setNav(!nav)} className="xl:hidden">
@@ -98,7 +125,7 @@ const Header = () => {
       <nav
         className={`${
           header
-            ? "top-0 py-2 lg:fixed  z-30 transition-all shadow-lg duration-300 bg-body bg-opacity-90 text-[#414141] w-full flex flex-row-reverse justify-center items-center"
+            ? "top-0 py-2 lg:fixed hidden z-30 transition-all shadow-lg duration-300 bg-body bg-opacity-90 text-[#414141] w-full lg:flex flex-row-reverse justify-center items-center"
             : " lg:flex hidden text-[#414141] font-bold shadow-[5px_35px_60px_-15px_rgba(0,0,0,0.3)] flex-row-reverse justify-center items-center py-2 "
         }`}
       >
@@ -118,37 +145,22 @@ const Header = () => {
             </span>
           </button>
           {isOpen ? (
-            <div className="flex flex-col justify-start w-[150px] absolute z-10 mr-3 text-sm bg-white mt-4 shadow-xl rounded-md px-0.5 py-1">
-              <Link
-                href="products"
-                className="flex w-full justify-center items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full my-1 hover:shadow-md mx-auto"
-              >
-                دوربین مداربسته
-              </Link>
-              <Link
-                href=""
-                className="flex w-full justify-center items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full hover:shadow-md my-1 "
-              >
-                دزدگیر اماکن
-              </Link>
-              <Link
-                href=""
-                className="flex w-full justify-center  items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full hover:shadow-md my-1 "
-              >
-                گیت فروشگاهی
-              </Link>
-              <Link
-                href=""
-                className="flex w-full justify-center  items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full hover:shadow-md my-1 "
-              >
-           پکیج دوربین مداربسته
-              </Link>
-              <Link
-                href=""
-                className="flex w-full justify-center  items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full hover:shadow-md my-1 "
-              >
-           پکیج  دزدگیراماکن
-              </Link>
+            <div
+              ref={dropdownRef}
+              className="flex flex-col justify-start w-[150px] absolute z-10 mr-3 text-sm bg-white mt-4 shadow-xl rounded-md px-0.5 py-1"
+            >
+              {dropdown.map((item, index) => {
+                return (
+                  <div key={index} onClick={() => setIsOpen(false)}>
+                    <Link
+                      href={item.href}
+                      className="flex w-full justify-center items-center py-1.5 hover:text-basic-hover hover:bg-basic hover:bg-opacity-20 hover:rounded-full my-1 hover:shadow-md mx-auto"
+                    >
+                      {item.name}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             ""
@@ -156,59 +168,114 @@ const Header = () => {
         </div>
 
         <Link
-          href=""
+          href="/accessories"
           className="mx-4 hover:text-basic-hover transition-all ease-in duration-150"
         >
           لوازم جانبی
         </Link>
 
         <Link
-          href="about-us"
+          href="/about-us"
           className="mx-4 px-1 py-1 hover:text-basic-hover transition-all ease-in-out duration-150  "
         >
           درباره ما
         </Link>
         <Link
-          href="contact-us"
+          href="/contact-us"
           className="mx-4 px-1 py-1 hover:text-basic-hover transition-all duration-150"
         >
           تماس با ما
         </Link>
       </nav>
 
-      {/* nav in mobile */}
-      <nav className="lg:hidden w-full max-h-[50px] text-[#aaa] mx-0 border-t-2 text-[12px]  bg-white text-slate-00 rounded-t-md shadow-xl shadow-slate-950 z-30 fixed flex flex-row-reverse items-center justify-around bottom-0">
-        <Link
-          href="/"
-          className="flex flex-col-reverse items-center hover:text-basic hover:border-t-2 border-basic hover:w-auto"
-        >
-          خانه
-          <AiOutlineHome size={24} />
-        </Link>
-        <Link
-          href=""
-          className="flex flex-col-reverse items-center hover:text-basic hover:border-t-2 border-basic hover:w-auto"
-        >
-          محصولات
-          <BiCategoryAlt size={24} />
-        </Link>
+      {nav ? (
+        <div
+          className="bg-black/80 overflow-hidden w-full h-screen fixed top-0 left-0 z-20 shadow-[5px_35px_60px_-15px_rgba(0,0,0,0.3)] lg:hidden xl:hidden flex"
+          onClick={() => {
+            setNav(!nav);
+          }}
+        ></div>
+      ) : (
+        ""
+      )}
+      <div className="lg:hidden xl:hidden fixed z-10 w-full flex justify-between flex-row-reverse item-center shadow-xl bg-white  ">
+        <div className="flex items-center mr-3">
+          <HiMenu size={30} className=" text-[#514e4e] " onClick={handleNavbar} />
+        </div>
+        <div>
+          <Image src={log} alt="logo" className="w-[100px] h-[60px]" />
+        </div>
+        {/* {localStorage.getItem("token") === null ? ( */}
+        <div className="rounded-md flex text-[#514e4e] items-center  ml-3">
+          <Link href="/signup">
+            <FaUser size={20} className="" />
+          </Link>
+        </div>
+      </div>
 
-        <Link
-          href="shopping"
-          className="flex flex-col-reverse items-center hover:text-basic hover:border-t-2 border-basic hover:w-auto"
+      <div className="lg:hidden xl:hidden flex">
+        <div
+          className={
+            nav
+              ? "fixed top-0 -translate-x-10 duration-700 -right-10  w-[250px] h-screen bg-white text-black z-50"
+              : "fixed top-0 left-[-100%] w-[250px] h-screen bg-white z-50"
+          }
         >
-          سبد خرید
-          <AiOutlineShoppingCart size={24} />
-        </Link>
-
-        <Link
-          href=""
-          className="flex flex-col-reverse items-center hover:text-basic hover:border-t-2 border-basic hover:w-auto"
-        >
-          ورود
-          <AiOutlineUser size={24} />
-        </Link>
-      </nav>
+          <div className="flex justify-center border-b mx-2">
+          <Link href="/" className="">
+            <Image
+              src={log}
+              alt="logo"
+              className="h-[60px] w-[140px] object-cover overflow-hidden"
+            />
+          </Link>
+          </div>
+          <nav className="">
+            <ul className="flex flex-col relative text-right top-1">
+           
+              <li className="flex items-center justify-end my-1.5 py-1 mx-2 rounded-md px-1">
+                <Link className="w-full" href="/">
+                  صفحه اصلی
+                </Link>
+              </li>
+              {dropdown.map((item, index) => {
+                return (
+                  <li key={index} className="flex items-center justify-end py-1 mx-2 rounded-md px-1" onClick={() => setIsOpen(false)}>
+                    <Link
+                      href={item.href}
+                      className="flex w-full justify-end items-center py-1 hover:shadow-md mx-auto"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            
+            <li className="flex items-center justify-end ease-in-out duration-200 delay-100 my-1 py-1.5 mx-2 rounded-md px-1">
+                <Link className="w-full" href="/acceessories">
+                  لوازم جانبی 
+                </Link>
+              </li>
+              <li className="flex items-center justify-end ease-in-out duration-200 delay-100 py-1.5 mx-2 rounded-md px-1">
+                <Link className="w-full" href="/about-us">
+                  درباره ما
+                </Link>
+              </li>
+              <li className="flex items-center justify-end  ease-in-out duration-200 delay-100 my-1 py-1.5 mx-2 rounded-md px-1">
+                <Link className="w-full" href="/contact-us">
+                  تماس با ما
+                </Link>
+              </li>
+              <li className="flex items-center justify-end ease-in-out duration-200 delay-100 my-1 py-1.5 mx-2 rounded-md px-1">
+                <Link className="w-full" href="/shopping">
+                  سبد خرید
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
     </header>
   );
 };

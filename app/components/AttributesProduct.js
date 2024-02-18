@@ -9,20 +9,20 @@ import service from "../../public/images/service.png"
 
 const AttributesProduct = () => {
   return (
-    <div className="flex flex-wrap flex-row-reverse rounded-lg justify-around items-center py-2 lg:w-4/5 w-full bg-white mx-auto shadow-xl my-12">
-      <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-wrap flex-row-reverse rounded-lg justify-around items-center lg:w-4/5 w-full mx-auto mt-20 lg:mt-12 mb-6 lg:mb-10">
+      <div className="flex flex-col items-center justify-center w-[130px] bg-[#f7f7f7] rounded-lg mb-2">
         <Image src={medal}  className="lg:w-16 w-10" />
         <p className="text-[12px]">ضمانت اصالت کالا</p>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-[130px] bg-[#f7f7f7] rounded-lg mb-2">
         <Image src={discount} className="lg:w-16 w-10"  />
         <p className="text-[12px]">تخفیفات ویژه</p>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-[130px] bg-[#f7f7f7] rounded-lg mb-2">
         <Image src={freeDelivery} className="lg:w-16 w-10" />
         <p className="text-[12px]">ارسال رایگان</p>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-[130px] bg-[#f7f7f7] rounded-lg mb-2">
         <Image src={service} className="lg:w-16 w-10" />
         <p className="text-[12px]">پشتیبانی</p>
       </div>

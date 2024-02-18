@@ -1,17 +1,12 @@
-// 'use client'
-// import React from 'react';
-// import ShopCart from './ShopCart';
-// const page = () => {
-//   return (
-//     <>
-//     <CartContextProvider>
-  
-//       <ShopCart />
-      
-//       </CartContextProvider>
-//     </>
- 
-//   );
-// };
+"use client";
+import React from "react";
+import ShopCart from "./ShopCart";
+const page = () => {
+  return (
+    <>
+      <ShopCart />
+    </>
+  );
+};
 
-// export default page;
+export default page;

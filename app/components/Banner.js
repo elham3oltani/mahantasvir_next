@@ -2,14 +2,6 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Image from "next/image";
-// import banner1 from "../../public/1.webp";
- import banner4 from "../../public/images/2.webp";
-// import banner3 from "../../public/3.webp";
-import banner1 from "../../public/images/banner_dahua.jpeg";
-import banner2 from "../../public/images/-bbb.jpeg";
-import banner3 from "../../public/images/banner_tvt.jpeg";
-//import { data } from "autoprefixer";
 function Banner({data}) {
   const responsive = {
     desktop: {
@@ -42,16 +34,13 @@ function Banner({data}) {
         customTransition="transform 300ms ease-in-out"
         responsive={responsive}
         removeArrowOnDeviceType={["mobile", "tablet"]}
-        //draggable={true}
-        // swipeable={true}
         arrows={true}
-        //showDots={true}
         renderArrowPrev={(clickHandler, hasPrev) => {
           return (
             <div
               className={`${
                 hasPrev ? "absolute" : "hidden"
-              } top-0 bottom-0 left-0 flex justify-center items-center p-3 opacity-30 hover:opacity-100 cursor-pointer z-20`}
+              } top-0 bottom-0 left-0 flex justify-center items-center p-3 opacity-30 hover:opacity-100 cursor-pointer z-10`}
               onClick={clickHandler}
             >
               <LeftIcon className="w-9 h-9 text-white" />
@@ -60,7 +49,7 @@ function Banner({data}) {
         }}
         renderArrowNext={true}
         keyBoardControl={true}
-        className="w-full md:h-[300px] xl:h-[400px] 2xl:h-[400px] lg:h-[350px] -z-20 relative object-cover"
+        className="w-full md:h-[300px] top-[60px] lg:top-0 xl:h-[400px] 2xl:h-[400px] lg:h-[350px] -z-20 relative object-cover"
       >
        {
         data ? 
@@ -74,25 +63,6 @@ function Banner({data}) {
         ))
         : []
        }
-        {/* <div>
-          <Image
-            src={banner2}
-            className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px] object-fill "
-          />
-        </div>
-        <div>
-          <Image
-            src={banner3}
-            className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px]  object-fill"
-          />
-        </div>
-
-        <div>
-          <Image
-            src={banner4}
-            className="w-full md:h-[400px] 2xl:h-[400px] xl:h-[400px] lg:h-[400px] h-[200px]  object-fill"
-          />
-        </div> */}
       </Carousel>
     </>
   );

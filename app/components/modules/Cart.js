@@ -1,25 +1,20 @@
 "use client";
-import react from "react";
+
+import { useContext } from "react";
+import { TbTrashX } from "react-icons/tb";
 import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Image from "next/image";
-import camera1 from "../../../public/images/cctv02.png";
-import alarm from "../../../public/images/alarm1.jpeg";
-import camera2 from "../../../public/images/cctv01.png";
-import camera3 from "../../../public/images/cctv-det3.webp";
-import { GoHeart } from "react-icons/go";
-import { BsCart3 } from "react-icons/bs";
-import { IoBookmark, IoEyeOutline } from "react-icons/io5";
-import logo from "../../../public/images/logo.png";
-import cctvlogo from "../../../public/images/cctvlogo.jpg";
-import { IsInCartProduct } from "../../components/helper/functions";
-import { numberWithComma } from "../../components/helper/functions";
-import { HiPlus } from "react-icons/hi";
-import { BsCartCheck } from "react-icons/bs";
+import {
+  IsInCartNewProduct,
+  quantityCountNewProduct,
+  numberWithComma,
+} from "../../components/helper/functions";
+import { HiPlus, HiMinus } from "react-icons/hi";
+import { CartContext } from "../context/CartContextProvider";
 import { ImSpinner6 } from "react-icons/im";
 const Cart = ({ data }) => {
-  //const { state, dispatch } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -28,7 +23,7 @@ const Cart = ({ data }) => {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 4,
+      items: 3,
       slidesToSlide: 1, // optional, default to 1.
     },
     mobile: {
@@ -40,15 +35,19 @@ const Cart = ({ data }) => {
 
   return (
     <div className="bg-[#f7f7f7] mt-8 h-full">
-      <div className="p-2 w-[85%] mx-auto rounded-xl pt-4 bg-[#f7f7f7]">
-        <div className="flex items-center flex-row-reverse justify-between  mt-4">
-          <h1 className="border-b-2 text-xl border-basic font-bold">
+      <div className="p-2 lg:w-[85%] mx-auto rounded-xl pt-4 bg-[#f7f7f7]">
+        <div className="flex items-center px-1 md:px-3 flex-row-reverse justify-between lg:mt-4">
+          <h1 className="text-xl text-center lg:mx-0 mx-auto w-full lg:w-fit py-2 lg:rounded-none rounded-xl lg:bg-transparent bg-basic lg:text-black text-white font-bold">
             {" "}
             جدیدترین محصولات
           </h1>
-          <button className="bg-white rounded-full shadow-lg text-basic text-sm px-1.5 py-2">
+          <div className="hidden lg:inline border md:w-[65%] w-[70%]"></div>
+          <Link
+            href="/seeAllBest"
+            className="bg-white rounded-full hidden lg:flex shadow-lg text-basic text-sm px-1.5 py-2"
+          >
             مشاهده همه
-          </button>
+          </Link>
         </div>
 
         <Carousel
@@ -57,258 +56,99 @@ const Cart = ({ data }) => {
           autoPlay={true}
           className="w-full mx-auto pt-4 "
           keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
+          customTransition="all .3"
+          transitionDuration={1000}
+          transitionTime={500}
+          interval={500}
         >
           {data ? (
             data.map((product) => (
               <div
                 key={product.id}
-                className="bg-white my-4 h-full mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]"
+                className="bg-white lg:my-3 h-full mx-auto xl:w-[250px] xl:h-[355px]
+                 lg:w-[235px] lg:h-[355px] md:w-[225px] md:h-[325px] ml:w-[192px] ml:h-[300px]
+                  mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex
+                  justify-between flex-col overflow-hidden rounded-[10px]"
               >
-                <div className="relative">
-                  <img
-                    src={product.files}
-                    className="object-cover mt-4 p-0 mx-auto w-fit  h-[180px] max-h-[200px]"
-                    alt={product.name}
-                  />
-                  {/* <div className=" absolute left-3 top-0  ">
-  <IoBookmark size={45} className="text-basic" />
-  <span className=" absolute left-[10px] top-2 text-white text-sm">
-    30%
-  </span>
-</div> */}
-                </div>
-                <div className="flex justify-center text-[#929090] flex-col items-center mt-2 overflow-hidden ">
+                <Link href={`/products/${product.id}`}>
+                  <div className="cursor-pointer relative">
+                    <img
+                      src={product.files}
+                      className="object-cover mt-4 p-0 mx-auto md:w-fit md:h-[180px]
+                       xl:w-fit xl:h-[180px] lg:w-fit lg:h-[180px] w-[140px] h-[100px]"
+                      alt={product.name}
+                    />
+                  </div>
+                </Link>
+                <div className="flex justify-center text-[#929090] flex-col py-1
+                 items-center mt-2 overflow-hidden ">
                   <div className="mt-3 flex flex-col justify-center">
-                  <p className="mt-1 text-black text-center">{product.name}</p>
-
-                    <p className="text-center text-basic font-bold mt-2">
-                      {numberWithComma(product.price)}تومان
+                    <p className="mt-1 text-black text-center">
+                      {product.name}
                     </p>
+                    <div className="flex items-center mt-2 justify-center">
+                      <span className="text-center text-basic font-bold">
+                        {numberWithComma(product.price)}
+                      </span>
+                      <span className="text-[12px]">تومان</span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-row-reverse justify-between items-center text-[#aaa] px-2 border-t h-[46px]">
-                 
-                <Link href={`/productdet/single/${product.id}`}>
-                    <span className="">
-                      <IoEyeOutline size={25} />{" "}
+                <div className="text-center flex items-center justify-center overflow-hidden text-[#fff] mx-2 border-t py-2">
+                  {quantityCountNewProduct(state, product.id) === 1 && (
+                    <button
+                      className="p-1 mx-3 rounded-full flex items-end justify-center bg-basic h-7 w-7"
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE-ITEM-FROM-NEW",
+                          payload: product,
+                        })
+                      }
+                    >
+                      <TbTrashX className="" size={21} />
+                    </button>
+                  )}
+                  {quantityCountNewProduct(state, product.id) > 1 && (
+                    <button
+                      onClick={() =>
+                        dispatch({ type: "DECRESS-NEW", payload: product })
+                      }
+                      className="mx-3 p-1 h-7 bg-basic w-7 flex items-end justify-center rounded-full text-2xl"
+                    >
+                      {" "}
+                      <HiMinus size={17} />
+                    </button>
+                  )}
+                  {quantityCountNewProduct(state, product.id) > 0 && (
+                    <span className="text-black">
+                      {quantityCountNewProduct(state, product.id)}
                     </span>
-                    </Link>
-                  <span>
-                    {" "}
-                    <BsCart3 size={25} className="" />
-                  </span>
+                  )}
+                  {IsInCartNewProduct(state, product.id) ? (
+                    <button
+                      onClick={() =>
+                        dispatch({ type: "INCRESS-NEW", payload: product })
+                      }
+                      className="p-1 mx-3 rounded-full flex items-end justify-center bg-basic h-7 w-7"
+                    >
+                      <HiPlus />
+                    </button>
+                  ) : (
+                    <button
+                      className="text-[#717171] "
+                      onClick={() =>
+                        dispatch({ type: "ADD_ITEMS_NEW", payload: product })
+                      }
+                    >
+                      اضافه به سبد خرید
+                    </button>
+                  )}
                 </div>
               </div>
             ))
           ) : (
             <ImSpinner6 size={30} className="animate-spin mx-auto" />
           )}
-
-          {/* <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-            <div className="relative">
-              <Image
-                src={camera3}
-                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
-                alt="camera"
-              />
-              <div className=" absolute left-3 top-0  ">
-                <IoBookmark size={45} className="text-basic" />
-                <span className=" absolute left-[10px] top-2 text-white text-sm">
-                  30%
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
-              <div className="mt-3 flex flex-col">
-                <p className="text-center text-basic font-bold ">90000 تومان</p>
-                <p className="mt-1 text-black">cctv warm light s22</p>
-              </div>
-            </div>
-            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
-              <span className="hover:text-basic rounded-full">
-                <GoHeart size={25} className="" />
-              </span>
-              <span className="">
-                <IoEyeOutline size={25} />{" "}
-              </span>
-              <span>
-                {" "}
-                <BsCart3 size={25} className="" />
-              </span>
-            </div>
-          </div>
-
-          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-            <div className="relative">
-              <Image
-                src={alarm}
-                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
-                alt="camera"
-              />
-              <div className=" absolute left-3 top-0  ">
-                <IoBookmark size={45} className="text-basic" />
-                <span className=" absolute left-[10px] top-2 text-white text-sm">
-                  30%
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
-              <div className="mt-3 flex flex-col">
-                <p className="text-center text-basic font-bold ">90000 تومان</p>
-                <p className="mt-1 text-black">cctv warm light s22</p>
-              </div>
-            </div>
-            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
-              <span className="hover:text-basic rounded-full">
-                <GoHeart size={25} className="" />
-              </span>
-              <span className="">
-                <IoEyeOutline size={25} />{" "}
-              </span>
-              <span>
-                {" "}
-                <BsCart3 size={25} className="" />
-              </span>
-            </div>
-          </div>
-
-          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-            <div className="relative">
-              <Image
-                src={camera1}
-                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
-                alt="camera"
-              />
-              <div className=" absolute left-3 top-0  ">
-                <IoBookmark size={45} className="text-basic" />
-                <span className=" absolute left-[10px] top-2 text-white text-sm">
-                  30%
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
-              <div className="mt-3 flex flex-col">
-                <p className="text-center text-basic font-bold ">90000 تومان</p>
-                <p className="mt-1 text-black">cctv warm light s22</p>
-              </div>
-            </div>
-            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
-              <span className="hover:text-basic rounded-full">
-                <GoHeart size={25} className="" />
-              </span>
-              <span className="">
-                <IoEyeOutline size={25} />{" "}
-              </span>
-              <span>
-                {" "}
-                <BsCart3 size={25} className="" />
-              </span>
-            </div>
-          </div>
-
-          <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-            <div className="relative">
-              <Image
-                src={camera1}
-                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
-                alt="camera"
-              />
-              <div className=" absolute left-3 top-0  ">
-                <IoBookmark size={45} className="text-basic" />
-                <span className=" absolute left-[10px] top-2 text-white text-sm">
-                  30%
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
-              <div className="mt-3 flex flex-col">
-                <p className="text-center text-basic font-bold ">90000 تومان</p>
-                <p className="mt-1 text-black">cctv warm light s22</p>
-              </div>
-            </div>
-            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
-              <span className="hover:text-basic rounded-full">
-                <GoHeart size={25} className="" />
-              </span>
-              <span className="">
-                <IoEyeOutline size={25} />{" "}
-              </span>
-              <span>
-                {" "}
-                <BsCart3 size={25} className="" />
-              </span>
-            </div>
-          </div> */}
-
-          {/* <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-            <div className="relative">
-              <Image
-                src={camera1}
-                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
-                alt="camera"
-              />
-              <div className=" absolute left-3 top-0  ">
-                <IoBookmark size={45} className="text-basic" />
-                <span className=" absolute left-[10px] top-2 text-white text-sm">
-                  30%
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
-              <div className="mt-3 flex flex-col">
-                <p className="text-center text-basic font-bold ">90000 تومان</p>
-                <p className="mt-1 text-black">cctv warm light s22</p>
-              </div>
-            </div>
-            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
-              <span className="hover:text-basic rounded-full">
-                <GoHeart size={25} className="" />
-              </span>
-              <span className="">
-                <IoEyeOutline size={25} />{" "}
-              </span>
-              <span>
-                {" "}
-                <BsCart3 size={25} className="" />
-              </span>
-            </div>
-          </div> */}
-
-          {/* <div className="bg-white my-4 mx-auto xl:w-[250px] xl:h-[355px] lg:w-[208px] lg:h-[355px] md:w-[225px] md:h-[355px] ml:w-[192px] ml:h-[300px] mm:w-[167px] mm:h-[272px] ms:w-[140px] ms:h-[272px] shadow-lg flex justify-between flex-col overflow-hidden rounded-[10px]">
-            <div className="relative">
-              <Image
-                src={camera1}
-                className="object-cover mt-4 w-fit mx-auto max-h-[200px]"
-                alt="camera"
-              />
-              <div className=" absolute left-3 top-0  ">
-                <IoBookmark size={45} className="text-basic" />
-                <span className=" absolute left-[10px] top-2 text-white text-sm">
-                  30%
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center text-[#929090] flex-col items-center mt-2 ">
-              <div className="mt-3 flex flex-col">
-                <p className="text-center text-basic font-bold ">90000 تومان</p>
-                <p className="mt-1 text-black">cctv warm light s22</p>
-              </div>
-            </div>
-            <div className="flex flex-row-reverse justify-evenly items-center rounded-[20px] text-[#aaa] px-2 border-t h-[46px]">
-              <span className="hover:text-basic rounded-full">
-                <GoHeart size={25} className="" />
-              </span>
-              <span className="">
-                <IoEyeOutline size={25} />{" "}
-              </span>
-              <span>
-                {" "}
-                <BsCart3 size={25} className="" />
-              </span>
-            </div>
-          </div> */}
         </Carousel>
       </div>
     </div>

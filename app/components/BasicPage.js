@@ -4,8 +4,6 @@ import Banner from "./Banner";
 const BasicPage =async () => {
     const data = await getData();
     const dataBanner = data[1];
-
-    console.log(dataBanner);
     return <Banner data={dataBanner} />;
     
     

@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Cart from '../modules/Cart';
-
 const NewestProduct = async () => {
   const data = await getData();
   const productNew = data["proposal"];

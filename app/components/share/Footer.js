@@ -15,7 +15,8 @@ const Footer = () => {
       {/* first part of footer */}
       <div className="lg:flex grid grid-cols-2 text-center justify-evenly text-white">
         <div className="flex flex-col items-center">
-          <span className="lg:w-16 lg:h-16 h-12 w-12 bg-basic flex items-center justify-center rounded-full">
+          <span className="lg:w-16 lg:h-16 h-12 w-12 bg-basic flex items-center
+           justify-center rounded-full">
             <SlLocationPin className=" justify-center " size={30} />
           </span>
           <p className="text-[12px] text-white lg:text-right mt-2">
@@ -24,7 +25,8 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-center">
-          <span className="lg:w-16 lg:h-16 h-12 w-12 bg-basic flex items-center justify-center rounded-full">
+          <span className="lg:w-16 lg:h-16 h-12 w-12 bg-basic flex items-center
+           justify-center rounded-full">
             {" "}
             <LiaPhoneVolumeSolid className="justify-center" size={30} />
           </span>
@@ -63,22 +65,22 @@ const Footer = () => {
         <div className="text-center">
           <ul>
             <li className="my-2">
-              <Link href="/">دوربین مداربسته</Link>
+              <Link href="/camera">دوربین مداربسته</Link>
             </li>
             <li className="my-2">
-              <Link href="/">دزدگیر اماکن</Link>
+              <Link href="/dozdgir">دزدگیر اماکن</Link>
             </li>
             <li className="my-2">
-              <Link href="/">گیت فروشگاهی</Link>
+              <Link href="/gate">گیت فروشگاهی</Link>
             </li>
             <li className="my-2">
-              <Link href="/">لوازم جانبی</Link>
+              <Link href="/accessories">لوازم جانبی</Link>
             </li>
             <li className="my-2">
-              <Link href="about-us">درباره ما</Link>
+              <Link href="/about-us">درباره ما</Link>
             </li>
             <li className="my-2">
-              <Link href="contact-us">تماس با ما</Link>
+              <Link href="/contact-us">تماس با ما</Link>
             </li>
           </ul>
         </div>
