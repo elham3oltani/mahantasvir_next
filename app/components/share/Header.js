@@ -49,9 +49,9 @@ const Header = () => {
   }, []);
 
   const dropdown = [
-    { href: "/camera", name: " دوربین مداربسته" },
-    { href: "/dozdgir", name: " دزدگیر اماکن" },
-    { href: "/gate", name: "گیت فروشگاهی" },
+    { href: "products/camera", name: " دوربین مداربسته" },
+    { href: "products/dozdgir", name: " دزدگیر اماکن" },
+    { href: "products/gate", name: "گیت فروشگاهی" },
     
   ];
 

@@ -17,8 +17,7 @@ import { useParams } from "next/navigation";
 const products = async ({ searchParams }) => {
   const params = useParams();
   console.log(params);
-  //const searchParams = useSearchParams();
-n
+  const data=await getData()
   return (
     <>
       <h1>{params.slug}</h1>
@@ -31,7 +30,7 @@ n
             <Product />
           </div>
           {/* filter product */}
-          <FilterProduct />
+          <FilterProduct data={data} />
         </div>
       </div>
     </>
@@ -40,7 +39,7 @@ n
 
 export default products;
 export async function getData() {
-  const res = await fetch("https://backend.mahantasvir.ir", {
+  const res = await fetch(`${process.env.BASE_URL}`, {
     nex: { revalidate: 10 },
   });
   const data = res.json();

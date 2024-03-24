@@ -14,11 +14,13 @@
     
   "build": "next build",
   
-    
+    "export":"next build && next export",
   "start": "next start",
   
     
   "lint": "next lint"
+
+  
   
   },
   

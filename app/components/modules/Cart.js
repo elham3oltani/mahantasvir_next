@@ -34,10 +34,10 @@ const Cart = ({ data }) => {
   };
 
   return (
-    <div className="bg-[#f7f7f7] mt-8 h-full">
+    <div className="bg-[#f7f7f7] mt-8">
       <div className="p-2 lg:w-[85%] mx-auto rounded-xl pt-4 bg-[#f7f7f7]">
         <div className="flex items-center px-1 md:px-3 flex-row-reverse justify-between lg:mt-4">
-          <h1 className="text-xl text-center lg:mx-0 mx-auto w-full lg:w-fit py-2 lg:rounded-none rounded-xl lg:bg-transparent bg-basic lg:text-black text-white font-bold">
+          <h1 className="text-xl text-center lg:mx-0 mx-auto w-full lg:w-fit py-2 lg:rounded-none rounded-xl lg:bg-transparent bg-basic text-white lg:text-basic font-bold">
             {" "}
             جدیدترین محصولات
           </h1>
@@ -60,6 +60,7 @@ const Cart = ({ data }) => {
           transitionDuration={1000}
           transitionTime={500}
           interval={500}
+          arr
         >
           {data ? (
             data.map((product) => (

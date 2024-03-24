@@ -6,6 +6,6 @@ export default async function Detail({ params: { idProduct } }) {
 }
 
 export async function getDataProduct(idProduct) {
-  const res = await fetch(`https://backend.mahantasvir.ir/single/${idProduct}`);
+  const res = await fetch(`${process.env.BASE_URL}/single/${idProduct}`);
   return res.json();
 }

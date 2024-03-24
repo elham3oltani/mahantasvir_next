@@ -16,7 +16,7 @@ const VerifyCode = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://backend.mahantasvir.ir/api/email/verify",
+        `${process.env.BASE_URL}/api/email/verify`,
         {
           verify_code: parseInt(verify),
         },
@@ -45,7 +45,7 @@ const VerifyCode = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://backend.mahantasvir.ir/api/email/resend",
+        `${process.env.BASE_URL}/api/email/resend`,
         {
           verify_code: parseInt(verify),
         },

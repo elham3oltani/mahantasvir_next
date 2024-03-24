@@ -1,26 +1,21 @@
-
-import React from 'react';
+import React from "react";
 import AttributesProduct from "../AttributesProduct";
 import NewestProduct from "./NewestProduct";
 import BannerImage from "../modules/BannerImage";
 import BestSeleProduct from "./BestSeleProduct";
 import BannerIntro from "../modules/BannerIntro";
-import CustomerTrust from '../CustomerTrust';
+import CustomerTrust from "../CustomerTrust";
 const index = () => {
- 
-    return (
-     <>
-     
-        <AttributesProduct />
-      {/* <SpeialSale /> */}
-      {/* <Discount /> */}
+  return (
+    <>
+      <AttributesProduct />
       <NewestProduct />
-     <BannerIntro /> 
-      <BestSeleProduct /> 
+      <BannerIntro />
+      <BestSeleProduct />
       <BannerImage />
-   <CustomerTrust />
-     </>
-    );
+      <CustomerTrust />
+    </>
+  );
 };
 
 export default index;

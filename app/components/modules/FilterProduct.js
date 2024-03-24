@@ -1,9 +1,9 @@
 "use client";
-
+import FilterPrice from "./FilterPrice";
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
-const FilterProduct = () => {
+const FilterProduct = ({data}) => {
   const [isOpenBrand, setIsOpenBrand] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [isOpenModel, setIsModel] = useState(false);
@@ -20,20 +20,7 @@ const FilterProduct = () => {
           />
         </div>
         {isOpenPrice ? (
-          <ul className="mt-4 trantransition-all ease-in duration-75">
-            <li className="flex flex-row-reverse mt-2">
-              <input type="checkbox" />
-              <span className="mr-1">300,000</span>
-            </li>
-            <li className="flex flex-row-reverse mt-2">
-              <input type="checkbox" />
-              <span className="mr-1">500,000</span>
-            </li>
-            <li className="flex flex-row-reverse mt-2">
-              <input type="checkbox" />
-              <span className="mr-1">1000,000</span>
-            </li>
-          </ul>
+          <FilterPrice data={data} />
         ) : (
           ""
         )}

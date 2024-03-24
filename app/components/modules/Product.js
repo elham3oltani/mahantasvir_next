@@ -14,13 +14,13 @@ const Product = ({ data }) => {
 
   return (
     <>
-      <div className="lg:mx-28 mt-16 overflow-hidden">
+      <div className="lg:mx-28 mt-16 mb-20 overflow-hidden">
         
         <div className="lg:flex-row flex flex-col-reverse">
           
           <div className="lg:w-[70%] w-full">
           <SortByProduct />
-            <section className="grid grid-cols-2 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3">
+            <section className="grid grid-cols-2 xl:grid-cols-3 mt-4 lg:grid-cols-3 md:grid-cols-3">
               {data
                 ? data.map((product) => (
                     <div
