@@ -34,27 +34,13 @@ const Cart = ({ data }) => {
   };
 
   return (
-    <div className="bg-[#f7f7f7] mt-8">
-      <div className="p-2 lg:w-[85%] mx-auto rounded-xl pt-4 bg-[#f7f7f7]">
-        <div className="flex items-center px-1 md:px-3 flex-row-reverse justify-between lg:mt-4">
-          <h1 className="text-xl text-center lg:mx-0 mx-auto w-full lg:w-fit py-2 lg:rounded-none rounded-xl lg:bg-transparent bg-basic text-white lg:text-basic font-bold">
-            {" "}
-            جدیدترین محصولات
-          </h1>
-          <div className="hidden lg:inline border md:w-[65%] w-[70%]"></div>
-          <Link
-            href="/seeAllBest"
-            className="bg-white rounded-full hidden lg:flex shadow-lg text-basic text-sm px-1.5 py-2"
-          >
-            مشاهده همه
-          </Link>
-        </div>
+  
 
         <Carousel
           removeArrowOnDeviceType={["tablet", "mobile"]}
           responsive={responsive}
           autoPlay={true}
-          className="w-full mx-auto pt-4 "
+          className="mx-auto pt-4 "
           keyBoardControl={true}
           customTransition="all .3"
           transitionDuration={1000}
@@ -62,6 +48,7 @@ const Cart = ({ data }) => {
           interval={500}
           arr
         >
+         
           {data ? (
             data.map((product) => (
               <div
@@ -81,10 +68,12 @@ const Cart = ({ data }) => {
                     />
                   </div>
                 </Link>
-                <div className="flex justify-center text-[#929090] flex-col py-1
-                 items-center mt-2 overflow-hidden ">
+                <div
+                  className="flex justify-center text-[#929090] flex-col py-1
+                 items-center mt-2 overflow-hidden "
+                >
                   <div className="mt-3 flex flex-col justify-center">
-                    <p className="mt-1 text-black text-center">
+                    <p className="mt-1 text-black text-sm lg:text-lg text-center">
                       {product.name}
                     </p>
                     <div className="flex items-center mt-2 justify-center">
@@ -151,8 +140,7 @@ const Cart = ({ data }) => {
             <ImSpinner6 size={30} className="animate-spin mx-auto" />
           )}
         </Carousel>
-      </div>
-    </div>
+     
   );
 };
 

@@ -1,78 +1,30 @@
 {
-  
   "name": "mahantasvirnew",
-  
   "version": "0.1.0",
-  
   "private": true,
-  
   "scripts": {
-  
-    
   "dev": "next dev",
-  
-    
   "build": "next build",
-  
-    "export":"next build && next export",
+  "export":"next build && next export",
   "start": "next start",
-  
-    
   "lint": "next lint"
-
-  
-  
   },
-  
   "dependencies": {
-  
-    
   "@emotion/core": "^11.0.0",
-  
-    
   "@emotion/styled": "^11.11.0",
-  
-    
   "autoprefixer": "10.4.15",
-  
-    
   "axios": "^1.6.7",
-  
-    
   "next": "^13.4.19",
-  
-    
   "postcss": "8.4.28",
-  
-    
   "react": "^18.2.0",
-  
-    
   "react-carousel-minimal": "^1.4.1",
-  
-    
   "react-dom": "^18.2.0",
-  
-    
   "react-icons": "^4.11.0",
-  
-    
   "react-multi-carousel": "^2.8.4",
-  
-    
   "react-responsive": "^9.0.2",
-  
-    
   "react-responsive-carousel": "^3.2.23",
-  
-    
   "react-tabs": "^6.0.2",
-  
-    
   "swiper": "^10.3.1",
-  
-    
   "tailwindcss": "3.3.3"
-  
   }
 }

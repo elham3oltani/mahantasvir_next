@@ -12,7 +12,7 @@ const page = async () => {
 
 
 async function getData() {
-    const res = await fetch("https://backend.mahantasvir.ir");
+    const res = await fetch(`${process.env.BASE_URL}`);
     return res.json();
   }
 

@@ -49,9 +49,9 @@ const Header = () => {
   }, []);
 
   const dropdown = [
-    { href: "products/camera", name: " دوربین مداربسته" },
-    { href: "products/dozdgir", name: " دزدگیر اماکن" },
-    { href: "products/gate", name: "گیت فروشگاهی" },
+    { href: "camera", name: " دوربین مداربسته" },
+    { href: "dozdgir", name: " دزدگیر اماکن" },
+    { href: "gate", name: "گیت فروشگاهی" },
     
   ];
 
@@ -203,7 +203,10 @@ const Header = () => {
           <HiMenu size={30} className=" text-[#514e4e] " onClick={handleNavbar} />
         </div>
         <div>
+          <Link href="/">
           <Image src={log} alt="logo" className="w-[100px] h-[60px]" />
+
+          </Link>
         </div>
         {/* {localStorage.getItem("token") === null ? ( */}
         <div className="rounded-md flex text-[#514e4e] items-center  ml-3">

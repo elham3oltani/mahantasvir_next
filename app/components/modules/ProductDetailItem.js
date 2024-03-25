@@ -29,15 +29,15 @@ const ProductDetailItem = (props) => {
         ))}
         <div className="border-t flex justify-between items-center px-2 py-1">
           <div className="text-[12px] flex items-center">
-            <Image src={quality} height={30} width={30} />
+            <Image alt="تضمین کیفیت<" src={quality} height={30} width={30} />
             <span className="ml-1">تضمین کیفیت</span>
           </div>
           <div className="text-[12px] flex items-center">
-            <Image src={guarantee} height={30} width={30} />
+            <Image alt="گارانتی" src={guarantee} height={30} width={30} />
             <span className="ml-1">گارانتی</span>
           </div>
           <div className="text-[12px] flex items-center">
-            <Image src={money} height={30} width={30} />
+            <Image alt="قیمت مناسب<" src={money} height={30} width={30} />
             <span className="ml-1">قیمت مناسب</span>
           </div>
         </div>

@@ -40,7 +40,7 @@ const Product = ({ data }) => {
                       </div>
                       </Link>
                       <div>
-                        <p className="text-center font-bold lg:text-lg text-sm">{product.name}</p>
+                        <p className="text-center font-bold lg:text-lg text-[12px]">{product.name}</p>
                       </div>
                       <div className="flex justify-evenly">
                         <p className="text-basic text-sm lg:text-lg font-bold">
